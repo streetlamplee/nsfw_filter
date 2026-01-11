@@ -1,6 +1,5 @@
 from transformers import pipeline
 from PIL import Image
-import io
 
 class Nsfw_filter:
     model = None
@@ -23,18 +22,4 @@ class Nsfw_filter:
         # 추론 수행
         results = classifier(image)
         
-        # 결과 해석 (nsfw 점수 추출)
-        # results 예시: [{'label': 'nsfw', 'score': 0.99}, {'label': 'normal', 'score': 0.01}]
-        nsfw_prob = 0.0
-        for res in results:
-            if res['label'] == 'nsfw':
-                nsfw_prob = res['score']
-        
-        # 임계값 설정 (예: 0.8 이상이면 차단)
-        is_toxic = nsfw_prob > 0.8
-
-        return {
-            "is_toxic": is_toxic,
-            "nsfw_probability": round(nsfw_prob, 4),
-            "raw_result": results
-        }
+        return results
