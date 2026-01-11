@@ -2,7 +2,7 @@ from transformers import pipeline
 from PIL import Image
 import io
 
-class nsfw_filter:
+class Nsfw_filter:
     model = None
     def load_model():
         """서버 시작 시 모델을 로드합니다."""
